@@ -1,3 +1,5 @@
-import streamlit as st
-x = st.slider('Select a value')
-st.write(x, 'squared is', x * x)
+import gradio as gr
+def greet(name):
+    return "Hello" + name + "!!"
+iface = gr.Interface(fn=greet, inputs="text", outputs="text")
+iface.launch()
