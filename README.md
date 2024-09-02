@@ -8,11 +8,8 @@ English | [简体中文](README_zh.md)
   <a href="resource/figures/wechat.jpg" target="_blank">
     <img alt="Wechat" src="https://img.shields.io/badge/wechat-robot%20inside-brightgreen?logo=wechat&logoColor=white" />
   </a>
-  <!-- <a href="https://huixiangdou.readthedocs.io/en/latest/" target="_blank">
+  <a href="https://huixiangdou.readthedocs.io/en/latest/" target="_blank">
     <img alt="Readthedocs" src="https://img.shields.io/badge/readthedocs-chat%20with%20AI-brightgreen?logo=readthedocs&logoColor=white" />
-  </a> -->
-  <a href="https://huixiangdou.readthedocs.io/zh-cn/latest/" target="_blank">
-    <img alt="Readthedocs" src="https://img.shields.io/badge/readthedocs-black?logo=readthedocs&logoColor=white" />
   </a>
   <a href="https://youtu.be/ylXrT-Tei-Y" target="_blank">
     <img alt="YouTube" src="https://img.shields.io/badge/YouTube-black?logo=youtube&logoColor=red" />
@@ -51,7 +48,8 @@ If this helps you, please give it a star ⭐
 
 Our Web version has been released to [OpenXLab](https://openxlab.org.cn/apps/detail/tpoisonooo/huixiangdou-web), where you can create knowledge base, update positive and negative examples, turn on web search, test chat, and integrate into Feishu/WeChat groups. See [BiliBili](https://www.bilibili.com/video/BV1S2421N7mn) and [YouTube](https://www.youtube.com/watch?v=ylXrT-Tei-Y) !
 
-- \[2024/08\] `chat_with_repo` [pipeline](./huixiangdou/service/parallel_pipeline.py) 👍
+- \[2024/09\] [code retrieval](./huixiangdou/service/parallel_pipeline.py)
+- \[2024/08\] [chat_with_readthedocs](https://huixiangdou.readthedocs.io/en/latest/), see [how to integrate](./docs/zh/doc_add_readthedocs.md) 👍
 - \[2024/07\] Image and text retrieval & Removal of `langchain` 👍
 - \[2024/07\] [Hybrid Knowledge Graph and Dense Retrieval](./docs/en/doc_knowledge_graph.md) improve 1.7% F1 score 🎯
 - \[2024/06\] [Evaluation of chunksize, splitter, and text2vec model](./evaluation) 🎯
@@ -120,10 +118,12 @@ Our Web version has been released to [OpenXLab](https://openxlab.org.cn/apps/det
 
 <td>
 
+- Dense for Document
+- Sparse for Code 
 - [Knowledge Graph](./docs/en/doc_knowledge_graph.md)
 - [Internet Search](./huixiangdou/service/web_search.py)
 - [SourceGraph](https://sourcegraph.com)
-- Image and text (only markdown)
+- Image and Text
 
 </td>
 
@@ -132,8 +132,9 @@ Our Web version has been released to [OpenXLab](https://openxlab.org.cn/apps/det
 - WeChat([android](./docs/zh/doc_add_wechat_accessibility.md)/[wkteam](./docs/zh/doc_add_wechat_commercial.md))
 - Lark
 - [OpenXLab Web](https://openxlab.org.cn/apps/detail/tpoisonooo/huixiangdou-web)
-- [Gradio Demo](./huixiangdou/gradio.py)
+- [Gradio Demo](./huixiangdou/gradio_ui.py)
 - [HTTP Server](./huixiangdou/server.py)
+- [Read the Docs](./docs/zh/doc_add_readthedocs.md)
 
 </td>
 
@@ -227,7 +228,7 @@ python3 -m huixiangdou.main --standalone
 💡 Also run a simple Web UI with `gradio`:
 
 ```bash
-python3 -m huixiangdou.gradio
+python3 -m huixiangdou.gradio_ui
 ```
 
 <video src="https://github.com/user-attachments/assets/9e5dbb30-1dc1-42ad-a7d4-dc7380676554" ></video>
@@ -282,7 +283,7 @@ python3 -m huixiangdou.service.feature_store --config_path config-cpu.ini
 # Q&A test
 python3 -m huixiangdou.main --standalone --config_path config-cpu.ini
 # gradio UI
-python3 -m huixiangdou.gradio --config_path config-cpu.ini
+python3 -m huixiangdou.gradio_ui --config_path config-cpu.ini
 ```
 
 If you find the installation too slow, a pre-installed image is provided in [Docker Hub](https://hub.docker.com/repository/docker/tpoisonooo/huixiangdou/tags). Simply replace it when starting the docker.
@@ -401,7 +402,7 @@ Contributors have provided [Android tools](./android) to interact with WeChat. T
 
 # 📝 Citation
 
-````shell
+```shell
 @misc{kong2024huixiangdou,
       title={HuiXiangDou: Overcoming Group Chat Scenarios with LLM-based Technical Assistance},
       author={Huanjun Kong and Songyang Zhang and Jiaying Li and Min Xiao and Jun Xu and Kai Chen},
@@ -411,12 +412,13 @@ Contributors have provided [Android tools](./android) to interact with WeChat. T
       primaryClass={cs.CL}
 }
 
-@misc{kong2024huixiangdoucr,
-      title={HuiXiangDou-CR: Coreference Resolution in Group Chats},
+@misc{kong2024labelingsupervisedfinetuningdata,
+      title={Labeling supervised fine-tuning data with the scaling law}, 
       author={Huanjun Kong},
       year={2024},
       eprint={2405.02817},
       archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}```
-````
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2405.02817}, 
+}
+```
