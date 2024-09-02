@@ -341,6 +341,7 @@ class HybridLLMServer:
             model=model,
             messages=messages,
             temperature=0.0,
+            max_tokens=512,
             stream=True
         )
         for chunk in stream:
